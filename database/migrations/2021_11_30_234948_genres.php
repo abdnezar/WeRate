@@ -16,7 +16,7 @@ class Genres extends Migration
         Schema::create('genres', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('genre');
-            $table->timestamp('deleted_at')->nullable()->change();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
