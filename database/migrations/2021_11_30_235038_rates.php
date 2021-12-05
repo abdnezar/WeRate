@@ -18,7 +18,7 @@ class Rates extends Migration
             $table->smallInteger('rate');
             $table->string('guest_mac');
             $table->integer('stores_id');
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

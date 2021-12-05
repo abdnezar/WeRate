@@ -20,7 +20,7 @@ class Stores extends Migration
             $table->bigInteger('phone');
             $table->string('logoUrl');
             $table->integer('genres_id');
-            $table->timestamp('deleted_at');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
