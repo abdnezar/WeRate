@@ -28,17 +28,17 @@
                             </div>
                             <div class="form-group">
                                 <h5><label style="color: black">Enter Store Latitude</label></h5>
-                                <a href="googlemaps.com" target="_blank">
-                                    <small><i href="maps.google.com" class="fa fa-map"></i> Use Google Map</small>
+                                <a href="https://www.google.com/maps/" target="_blank">
+                                    <small><i class="fa fa-map"></i> Use Google Map</small>
                                 </a>
-                                <input name="storeLat" type="double" class="form-control" maxlength="25" value="@if(isset($_GET['lat'])){{$_GET['lat'];}}@endif">
+                                <input name="storeLat" type="number" step="any" class="form-control" maxlength="25" value="@if(isset($_GET['lat'])){{$_GET['lat'];}}@endif">
                             </div>
                             <div class="form-group">
                                 <h5><label style="color: black">Enter Store Longitude</label></h5>
-                                <a href="googlemaps.com" target="_blank">
-                                    <small><i href="maps.google.com" class="fa fa-map"></i> Use Google Map</small>
+                                <a href="https://www.google.com/maps/" target="_blank">
+                                    <small><i class="fa fa-map"></i> Use Google Map</small>
                                 </a>                                
-                                <input name="storeLng" type="double" class="form-control" maxlength="25" value="@if(isset($_GET['lng'])){{$_GET['lng'];}}@endif">
+                                <input name="storeLng" type="number" step="any" class="form-control" maxlength="25" value="@if(isset($_GET['lng'])){{$_GET['lng'];}}@endif">
                             </div>
                             <div class="form-group">
                                 <h5><label style="color: black">Choose Store Genre 

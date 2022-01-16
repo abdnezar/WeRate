@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GenreRequest;
 use App\Models\Genre;
-use Illuminate\Http\Request;
 
 class GenresController extends Controller
 {

@@ -20,6 +20,25 @@ class StoresController extends Controller {
         return view('dashboard.createStore')->with('genres',$genres);
     }
 
+    public function drop($id)
+    {
+        $deleteResult = Store::where('id', $id)->delete();
+        session(['deleteResult' => $deleteResult]);
+        return redirect('store/manage');
+    }
+
+    public function restore($id)
+    {
+        $restoreResult = Store::where('id', $id)->restore();
+        session(['restoreResult' => $restoreResult]);
+        return redirect('store/manage');
+    }
+
+    public function getManageView()
+    {
+        $stores = Store::withTrashed()->orderBy('id','desc')->with('rates')->with('genres')->paginate(15);
+        return view('dashboard.manageStores')->with('stores',$stores);
+    }
     public function store(StoreRequest $request)
     {
         $storeName = $request['storeName'];
@@ -66,26 +85,6 @@ class StoresController extends Controller {
         ]);
 
         session(['updateResult' => $updateResult]);        
-        return redirect('store/manage');
-    }
-
-    public function getManageView()
-    {
-        $stores = Store::withTrashed()->orderBy('id','desc')->with('rates')->with('genres')->paginate(15);
-        return view('dashboard.manageStores')->with('stores',$stores);
-    }
-
-    public function drop($id)
-    {
-        $deleteResult = Store::where('id', $id)->delete();
-        session(['deleteResult' => $deleteResult]);
-        return redirect('store/manage');
-    }
-
-    public function restore($id)
-    {
-        $restoreResult = Store::where('id', $id)->restore();
-        session(['restoreResult' => $restoreResult]);
         return redirect('store/manage');
     }
 

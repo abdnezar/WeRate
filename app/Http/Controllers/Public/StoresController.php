@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRequest;
 use App\Http\Requests\UserRatingRequests;
-use App\Http\Requests\UserRequests;
-use App\Http\Requests\UserSearchRequest;
 use App\Models\Genre;
 use App\Models\Rate;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StoresController extends Controller
 {
@@ -27,7 +25,31 @@ class StoresController extends Controller
         $store = Store::with('genres')->where('id', $id)->first();
         $storeRates = Rate::where('stores_id',$id)->get();
         $rate = $this::getStoreRate($storeRates);
-        return view('public.storeInfo')->with('store', $store)->with('storeRates', $storeRates)->with('rate',$rate);
+        $trend = $this->calcTrend($id);
+        return view('public.storeInfo')->with('store', $store)->with('storeRates', $storeRates)->with('rate',$rate)->with('trend',$trend);
+    }
+
+    public function calcTrend($id)
+    {
+        $lastWeekRateSum = 0;
+        $lastWeekRates = DB::select("SELECT * FROM rates WHERE stores_id = ".$id. " AND created_at BETWEEN AddDATE(NOW(), -7) AND NOW()");
+        for ($i=0; $i < count($lastWeekRates); $i++) { 
+            $lastWeekRateSum += $lastWeekRates[$i]->rate;
+        }
+        // dump('LW Sum = ',$lastWeekRateSum);
+
+        $beforLastWeekRatesSum = 0;
+        $beforLastWeekRates = DB::select("SELECT * FROM rates WHERE stores_id = ".$id. " AND created_at BETWEEN AddDATE(NOW(), -14) AND AddDATE(NOW(), -7)");
+        for ($i = 0; $i < count($beforLastWeekRates); $i++) {
+            $beforLastWeekRatesSum += $beforLastWeekRates[$i]->rate;
+        }
+        // dump('BLW Sum = ',$beforLastWeekRatesSum);
+
+        if ($lastWeekRateSum > $beforLastWeekRatesSum) {
+            return true;
+        }
+
+        return false;
     }
 
     public function addRate(UserRatingRequests $req,$storeId,$userMac)

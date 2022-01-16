@@ -47,7 +47,7 @@
                                 @if ($loop->index == 0)
                                     <div class="carousel-item active">
                                         <a href="{{URL('store/info/'.$topStore->stores->id)}}">
-                                            <img style="border-radius: 15px;" height="520px" width="800px" src="@if(!@empty($topStore->stores->logoUrl)){{env('STORAGE_URL').$topStore->stores->logoUrl}}@else{{asset('images/storeImg.jpg')}}@endif" >
+                                            <img style="border-radius: 15px;" height="420px" width="800px" src="@if(!@empty($topStore->stores->logoUrl)){{env('STORAGE_URL').$topStore->stores->logoUrl}}@else{{asset('images/storeImg.jpg')}}@endif" >
                                             <div class="carousel-caption d-none d-md-block" style="background: #4861c7ab;border-radius:15px">
                                                 <div>
                                                     @isset($topStore->stores->name)
@@ -69,7 +69,7 @@
                                 @else
                                     <div class="carousel-item">
                                         <a href="{{URL('store/info/'.$topStore->stores->id)}}">
-                                            <img style="border-radius: 15px;" height="520px" width="800px" src="@if(!@empty($topStore->stores->logoUrl)){{env('STORAGE_URL').$topStore->stores->logoUrl}}@else{{asset('images/storeImg.jpg')}}@endif" >
+                                            <img style="border-radius: 15px;" height="420px" width="800px" src="@if(!@empty($topStore->stores->logoUrl)){{env('STORAGE_URL').$topStore->stores->logoUrl}}@else{{asset('images/storeImg.jpg')}}@endif" >
                                             <div class="carousel-caption d-none d-md-block" style="background: #4861c7ab;border-radius:15px">
                                                 <div>
                                                     @isset($topStore->stores->name)
